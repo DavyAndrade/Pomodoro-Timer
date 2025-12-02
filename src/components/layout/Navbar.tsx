@@ -6,23 +6,24 @@ export default function Navbar() {
     {
       label: "Início",
       href: "/",
-      icon: <House />,
+      icon: <House size={16} />,
     },
     {
       label: "Configurações",
       href: "/settings",
-      icon: <Settings />,
+      icon: <Settings size={16} />,
     },
   ];
 
   return (
-    <header className="w-full bg-gray-800 sticky top-0 z-50 text-white flex justify-center items-center gap-2">
-      <div className="flex w-full justify-between items-center gap-2 border-b-2 border-gray-700 mx-4 py-6 md:max-w-5xl md:mx-auto">
+    <header className="w-full bg-gray-800 sticky top-0 z-50 text-white flex justify-center items-center gap-2 h-16">
+      <div className="flex w-full justify-between items-center gap-2 border-b-2 border-gray-700 mx-4 py-4 md:max-w-3xl">
         <Link
           to="/"
-          className="text-2xl text-center font-semibold flex items-center gap-2 hover:text-white/75 transition-colors"
+          className="text-xl text-center font-semibold flex justify-center items-center gap-2 hover:text-white/75 transition-colors"
         >
-          <Clock /> Pomodoro
+          <Clock size={20} />
+          <h2>Pomotimer</h2>
         </Link>
 
         <nav className="flex gap-3">
@@ -50,10 +51,10 @@ function NavigationItem({ label, href, icon }: NavigationItemProps) {
   return (
     <Link
       to={href}
-      className="flex justify-center items-center gap-3 p-3 rounded-md bg-gray-700 hover:bg-gray-600 focus:bg-gray-600 hover:cursor-pointer transition-colors text-lg"
+      className="flex justify-center items-center gap-2 p-2 rounded-md bg-gray-700 hover:bg-gray-600 hover:cursor-pointer transition-colors"
     >
       {icon}
-      <p className="text-md font-semibold hidden md:block">{label}</p>
+      <p className="text-sm hidden sm:block">{label}</p>
     </Link>
   );
 }
