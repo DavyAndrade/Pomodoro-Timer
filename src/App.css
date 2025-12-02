@@ -2,13 +2,16 @@
 
 :root {
   /* Background Colors */
-  --bg-primary: hsl(0, 0%, 0%);
-  --bg-secondary: hsl(0, 0%, 5%);
-  --bg-tertiary: hsl(0, 0%, 10%);
+  --bg-primary: hsl(0, 0%, 10%);
+  --bg-secondary: hsl(0, 0%, 20%);
+  --bg-tertiary: hsl(0, 0%, 30%);
+
+  /* Border Colors */
+  --border-primary: hsl(0, 0%, 50%);
 
   /* Text Colors */
   --text-primary: hsl(0, 0%, 95%);
-  --text-secondary: hsl(0, 0%, 70%);
+  --text-muted: hsl(0, 0%, 70%);
 }
 
 .bg-primary {
@@ -27,12 +30,6 @@
   color: var(--text-primary);
 }
 
-.text-secondary {
-  color: var(--text-secondary);
-}
-
-.layout {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
+.text-muted {
+  color: var(--text-muted);
 }
