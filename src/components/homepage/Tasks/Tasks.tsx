@@ -23,11 +23,16 @@ export default function Tasks() {
     setTasks([...tasks, newTask]);
   }
 
-  function handleEditTask(taskId: string) {}
+  function handleEditTask(taskId: string) {
+    setTasks(tasks.map((task) => task.id === taskId ? {...task, title: "Teste"} : task));
+  }
+
+  function handleToggleCompleteTask(taskId: string) {
+    setTasks(tasks.map((task) => task.id === taskId ? {...task, completed: !task.completed} : task));
+  }
 
   function handleRemoveTask(taskId: string) {
     setTasks(tasks.filter((task) => task.id !== taskId));
-    localStorage.setItem("pomodoroTasks", JSON.stringify(tasks));
   }
 
   useEffect(() => {
@@ -61,7 +66,7 @@ export default function Tasks() {
         {/* Lista de Tarefas */}
 
         {tasks.length > 0 ? (
-          tasks.map((task) => <TaskCard key={task.id} task={task} onRemoveTask={handleRemoveTask} onEditTask={handleEditTask} />)
+          tasks.map((task) => <TaskCard key={task.id} task={task} onToggleCompleteTask={handleToggleCompleteTask} onRemoveTask={handleRemoveTask} onEditTask={handleEditTask} />)
         ) : (
           <div>
             <p className="text-gray-500 text-center text-lg">

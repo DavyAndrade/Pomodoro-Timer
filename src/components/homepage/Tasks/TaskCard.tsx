@@ -1,14 +1,19 @@
-import { Pencil, Trash2 } from "lucide-react";
+import { Check, Pencil, Target, Trash2 } from "lucide-react";
 import type Task from "./Task";
 
 type TaskCardProps = {
   task: Task;
   onRemoveTask: (taskId: string) => void;
   onEditTask: (taskId: string) => void;
+  onToggleCompleteTask: (taskId: string) => void;
 };
 
-export default function TaskCard({ task, onRemoveTask, onEditTask }: TaskCardProps) {
-
+export default function TaskCard({
+  task,
+  onRemoveTask,
+  onEditTask,
+  onToggleCompleteTask,
+}: TaskCardProps) {
   function removeTask() {
     onRemoveTask(task.id);
   }
@@ -17,37 +22,73 @@ export default function TaskCard({ task, onRemoveTask, onEditTask }: TaskCardPro
     onEditTask(task.id);
   }
 
-  return (
-    <article className="w-full flex flex-col gap-2 p-6 border-2 border-gray-600 rounded-md">
-      <div className="flex justify-between items-start gap-2">
-        {/* Botão de Switch de Concluído */}
-        <button className="h-6 w-6 rounded-sm border-2 border-gray-600 hover:border-green-400 hover:cursor-pointer"></button>
+  function toggleCompleteTask() {
+    onToggleCompleteTask(task.id);
+  }
 
-        <div className="flex flex-col gap-1 items-center">
+  return (
+    <article
+      className={`w-full flex flex-col items-start gap-2 p-6 border-2 ${
+        task.completed
+          ? "border-green-600 opacity-75"
+          : "border-gray-600 hover:border-blue-400"
+      } rounded-md transition-colors`}
+    >
+      <div className="flex items-start gap-3 w-full">
+        {/* Botão de Switch de Concluído */}
+        <button
+          className={`flex items-center justify-center h-5 w-5 rounded-sm border-2 border-gray-600 hover:cursor-pointer mt-1 ${
+            task.completed
+              ? "bg-green-600 border-green-600"
+              : "hover:border-green-500"
+          }`}
+          onClick={toggleCompleteTask}
+        >
+          {task.completed && <Check size={20} />}
+        </button>
+
+        <div className="flex flex-col gap-4 flex-1">
           {/* Título e Descrição */}
           <div className="flex flex-col gap-1">
-            <h3 className="font-bold text-xl">{task.title}</h3>
+            <h3 className={`font-bold text-lg ${task.completed ? "line-through" : ""}`}>{task.title}</h3>
 
             {task.description && (
-              <p className="text-gray-500 text-sm max-w-[200px]">
-                {task.description}
-              </p>
+              <p className="text-gray-400 text-sm">{task.description}</p>
             )}
           </div>
 
-          <div>
-            <p>
-              {task.pomodorosCompleted}/{task.estimatedPomodoros} pomodoros
-              completados
+          <div className="flex flex-col items-start gap-2">
+            {/* Barra de Progresso */}
+            <p className="flex items-center gap-1 text-sm text-gray-400">
+              <Target className="text-blue-400" size={20} /> {task.pomodorosCompleted} /{" "}
+              {task.estimatedPomodoros} pomodoros
             </p>
-            <p>{task.completed ? "Concluído" : "Pendente"}</p>
+
+            <div className="w-full flex flex-col items-start gap-1">
+              <div className="w-full h-2 bg-gray-700 rounded-md overflow-hidden">
+                <div
+                  className="h-full bg-blue-400"
+                  style={{
+                    width: `${
+                      (task.pomodorosCompleted / task.estimatedPomodoros) * 100
+                    }%`,
+                  }}
+                ></div>
+              </div>
+              <p className="text-gray-400 text-xs">
+                {Math.round(
+                  (task.pomodorosCompleted / task.estimatedPomodoros) * 100
+                )}
+                % concluído
+              </p>
+            </div>
           </div>
           <div></div>
         </div>
 
         <div className="flex gap-1">
           {/* Botão de Editar */}
-          <button className="text-blue-400 hover:bg-gray-700 p-2 rounded-sm hover:cursor-pointer">
+          <button className="text-blue-400 hover:bg-gray-700 p-2 rounded-sm hover:cursor-pointer" onClick={editTask}>
             <Pencil size={20} />
           </button>
 
