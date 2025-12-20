@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type Task from "./Task";
 
-export default function TaskForm() {
+type TaskFormProps = {
+    onAddTask: (task: Task) => void;
+}
+
+export default function TaskForm({ onAddTask }: TaskFormProps) {
   const [isShowForm, setIsShowForm] = useState(false);
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [estimatedPomodoros, setEstimatedPomodoros] = useState<string>("4");
-  const [tasks, setTasks] = useState<Task[]>(() => {
-    const savedTasks = localStorage.getItem("pomodoroTasks");
 
-    if (!savedTasks) return [];
-
-    try {
-      return JSON.parse(savedTasks);
-    } catch (error) {
-      console.error("Erro ao carregar tarefas:", error);
-      return [];
-    }
-  });
 
   function addTask() {
     if (title.trim() === "") return;
-    if (description.trim() === "") return;
     if (estimatedPomodoros.trim() === "") return;
 
     const newTask: Task = {
@@ -33,7 +25,7 @@ export default function TaskForm() {
       pomodorosCompleted: 0,
     };
 
-    setTasks([...tasks, newTask]);
+    onAddTask(newTask);
     setTitle("");
     setDescription("");
     setEstimatedPomodoros("4");
@@ -44,11 +36,6 @@ export default function TaskForm() {
     setIsShowForm(false);
     addTask();
   }
-
-  useEffect(() => {
-    localStorage.setItem("pomodoroTasks", JSON.stringify(tasks));
-    console.log("Tarefas salvas:", tasks);
-  }, [tasks]);
 
   return (
     <div className="w-full flex flex-col gap-4">
@@ -65,6 +52,7 @@ export default function TaskForm() {
               placeholder="Ex.: Lição de Matemática"
               className="border-2 border-gray-600 rounded-md p-2"
               onChange={(e) => setTitle(e.target.value)}
+              required
             />
           </div>
 

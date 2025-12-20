@@ -5,22 +5,35 @@ import TaskForm from "./TaskForm";
 import TaskCard from "./TaskCard";
 
 export default function Tasks() {
-    const [tasks, setTasks] = useState<Task[]>(() => {
-      const savedTasks = localStorage.getItem("pomodoroTasks");
-  
-      if (!savedTasks) return [];
-  
-      try {
-        return JSON.parse(savedTasks);
-      } catch (error) {
-        console.error("Erro ao carregar tarefas:", error);
-        return [];
-      }
-    });
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    const savedTasks = localStorage.getItem("pomodoroTasks");
 
-    useEffect(() => {
-      localStorage.setItem("pomodoroTasks", JSON.stringify(tasks));
-    }, [tasks]);
+    if (!savedTasks) return [];
+
+    try {
+      const parsedTasks = JSON.parse(savedTasks);
+      return parsedTasks;
+    } catch (error) {
+      console.error("Erro ao carregar tarefas:", error);
+      return [];
+    }
+  });
+
+  function handleAddTask(newTask: Task) {
+    setTasks([...tasks, newTask]);
+  }
+
+  function handleEditTask(taskId: string) {}
+
+  function handleRemoveTask(taskId: string) {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+    localStorage.setItem("pomodoroTasks", JSON.stringify(tasks));
+  }
+
+  useEffect(() => {
+    localStorage.setItem("pomodoroTasks", JSON.stringify(tasks));
+    console.log("Tarefas salvas:", tasks);
+  }, [tasks]);
 
   /* 
     TODO: 
@@ -43,23 +56,21 @@ export default function Tasks() {
       <div className="w-full flex flex-col justify-center items-center gap-8">
         {/* Botão de Adicionar Tarefa */}
 
-        <TaskForm />
+        <TaskForm onAddTask={handleAddTask} />
 
         {/* Lista de Tarefas */}
 
         {tasks.length > 0 ? (
-          tasks.map((task) => (
-            <TaskCard key={task.id} task={task}/>
-          ))
+          tasks.map((task) => <TaskCard key={task.id} task={task} onRemoveTask={handleRemoveTask} onEditTask={handleEditTask} />)
         ) : (
-        <div>
-          <p className="text-gray-500 text-center text-lg">
-            Nenhuma tarefa adicionada ainda.
-          </p>
-          <p className="text-gray-500 text-center text-lg">
-            Comece adicionando sua primeira tarefa acima!
-          </p>
-        </div>
+          <div>
+            <p className="text-gray-500 text-center text-lg">
+              Nenhuma tarefa adicionada ainda.
+            </p>
+            <p className="text-gray-500 text-center text-lg">
+              Comece adicionando sua primeira tarefa acima!
+            </p>
+          </div>
         )}
       </div>
     </section>
