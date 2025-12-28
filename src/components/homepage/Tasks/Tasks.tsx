@@ -1,6 +1,6 @@
 import { EllipsisVertical } from "lucide-react";
 import { useEffect, useState } from "react";
-import type Task from "./Task";
+import type Task from "../../../models/Task";
 import TaskForm from "./TaskForm";
 import TaskCard from "./TaskCard";
 

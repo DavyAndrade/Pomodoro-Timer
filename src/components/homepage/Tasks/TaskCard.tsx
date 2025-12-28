@@ -1,5 +1,5 @@
 import { Check, Pencil, Target, Trash2 } from "lucide-react";
-import type Task from "./Task";
+import type Task from "../../../models/Task";
 
 type TaskCardProps = {
   task: Task;
