@@ -18,6 +18,11 @@ export default function TaskCard({
 }: TaskCardProps) {
   const [isEditing, setIsEditing] = useState(false);
 
+  const progress = Math.min(
+    Math.round((task.pomodorosCompleted / task.estimatedPomodoros) * 100),
+    100
+  );
+
   if (isEditing) {
     return (
       <TaskEditForm
@@ -77,18 +82,11 @@ export default function TaskCard({
                 <div
                   className="h-full bg-blue-400"
                   style={{
-                    width: `${
-                      (task.pomodorosCompleted / task.estimatedPomodoros) * 100
-                    }%`,
+                    width: `${progress}%`,
                   }}
                 ></div>
               </div>
-              <p className="text-gray-400 text-xs">
-                {Math.round(
-                  (task.pomodorosCompleted / task.estimatedPomodoros) * 100
-                )}
-                % concluído
-              </p>
+              <p className="text-gray-400 text-xs">{progress}% concluído</p>
             </div>
           </div>
           <div></div>

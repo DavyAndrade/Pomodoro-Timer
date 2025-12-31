@@ -35,6 +35,7 @@ export default function TaskEditForm({
     estimatedPomodoros: string
   ) => {
     if (title.trim() === "") return;
+    if (pomodorosCompleted.trim() === "") return;
     if (estimatedPomodoros.trim() === "") return;
 
     const updatedTask: Task = {
@@ -67,6 +68,7 @@ export default function TaskEditForm({
           onChange={(e) => setTitle(e.target.value)}
           value={title}
           className="border-2 border-gray-600 rounded-md p-2"
+          required
         />
       </div>
 
@@ -89,6 +91,8 @@ export default function TaskEditForm({
             onChange={(e) => setPomodorosCompleted(e.target.value)}
             value={pomodorosCompleted}
             className="border-2 border-gray-600 rounded-md p-2 flex-1"
+            min={0}
+            required
           />
         </div>
 
@@ -100,6 +104,8 @@ export default function TaskEditForm({
             onChange={(e) => setEstimatedPomodoros(e.target.value)}
             value={estimatedPomodoros}
             className="border-2 border-gray-600 rounded-md p-2 flex-1"
+            min={1}
+            required
           />
         </div>
       </div>
