@@ -26,10 +26,15 @@ Lista de tarefas para desenvolvimento do projeto Pomotimer.
   - [ ] Atualizar `pomodorosCompleted` automaticamente ao completar
   - [ ] Adicionar notificação sonora ao fim do timer (opcional)
 
-- [ ] **Navegação para Pomodoro**
+- [x] **Navegação para Pomodoro**
   - [x] Tornar TaskCard clicável
   - [x] Implementar rota `/pomodoro/:taskId`
   - [x] Passar task selecionada para página do Pomodoro
+  - [x] Capturar parâmetro via useParams
+  - [x] Prevenir propagação de eventos nos botões do card
+  - [x] Buscar task pelo ID na página Pomodoro
+  - [x] Botão de voltar para tela de tarefas
+  - [x] Tratamento quando task não é encontrada
   - [ ] Criar contexto/estado global para task ativa (opcional)
 
 ---
@@ -57,10 +62,12 @@ Lista de tarefas para desenvolvimento do projeto Pomotimer.
   - [x] Adicionar tipagem para `editTask` com `Partial<Task>`
   - [x] Renomear `toggleCompleteTask` para `toggleComplete`
 
-- [ ] **Otimizar TaskCard**
+- [x] **Otimizar TaskCard**
   - [x] Remover funções wrapper desnecessárias
   - [x] Passar callbacks diretamente: `onClick={() => onRemoveTask(task.id)}`
   - [x] Simplificar lógica de renderização condicional
+  - [x] Calcular progresso uma única vez (evitar duplicação)
+  - [x] Limitar barra de progresso a 100% com Math.min()
 
 - [ ] **Componentizar melhor**
   - [ ] Extrair `ProgressBar` de TaskCard (componente reutilizável)
@@ -231,29 +238,42 @@ Lista de tarefas para desenvolvimento do projeto Pomotimer.
 
 ## ✅ Concluído
 
-- [x] Estrutura base do projeto
+### Sprint 1 - Setup e CRUD ✅
+- [x] Estrutura base do projeto (Vite + React + TypeScript)
 - [x] Sistema de roteamento (React Router)
 - [x] Layout básico (Navbar + Footer)
-- [x] Componentes de Tasks (TaskCard, TaskForm, Tasks)
-- [x] Adicionar tarefas
-- [x] Remover tarefas
-- [x] Marcar/desmarcar como concluída
-- [x] Persistência em localStorage
+- [x] Componentes de Tasks (TaskCard, TaskForm, TaskEditForm, Tasks)
+- [x] CRUD completo de tarefas
+- [x] Persistência automática em localStorage
+- [x] Barra de progresso de pomodoros (limitada a 100%)
+- [x] Interface Task em models/
+- [x] README.md e TODO.md com documentação
+
+### Sprint 2 - Hooks Customizados ✅
 - [x] Hook customizado `useLocalStorage`
 - [x] Hook customizado `useTasks`
-- [x] Barra de progresso de pomodoros
-- [x] Porcentagem de conclusão
-- [x] Interface Task em models/
-- [x] README.md com documentação completa
+- [x] Refatoração: separação lógica/UI
+- [x] Otimizações no TaskCard
+
+### Sprint 3 - Navegação para Pomodoro ✅
+- [x] Página Pomodoro.tsx
+- [x] Rota `/pomodoro/:taskId`
+- [x] TaskCard clicável com Link
+- [x] Captura de parâmetro via useParams
+- [x] Prevenção de propagação de eventos
+- [x] Busca da task por ID
+- [x] Botão voltar e tratamento de erros
 
 ---
 
 ## 📅 Roadmap Sugerido
 
 ### Sprint 1 (Atual)
-1. ✅ Setup e estrutura básica
-2. ✅ CRUD de tarefas
-3. ✅ Refatoração com hooks
+1. ✅ Setup e estrutura bás (useLocalStorage + useTasks)
+4. ✅ Implementar edição de tarefas
+5. ✅ Navegação para página Pomodoro
+6. ⏳ Implementar timer funcional no Pomodoro
+7. ⏳ Começar migraçãoração com hooks
 4. ⏳ Implementar edição de tarefas
 5. ⏳ Migrar para CSS Modules (TaskCard primeiro)
 
@@ -285,5 +305,6 @@ Lista de tarefas para desenvolvimento do projeto Pomotimer.
 
 ---
 
-**Última atualização:** 30 de dezembro de 2025  
-**Status do projeto:** 🟢 Em desenvolvimento ativo
+**Última atualização:** 31 de dezembro de 2025  
+**Status do projeto:** 🟢 Em desenvolvimento ativo  
+**Sprint atual:** Sprint 4 - Implementação do Timer Pomodoro

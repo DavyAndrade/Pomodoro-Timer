@@ -35,10 +35,10 @@ export default function TaskCard({
   }
 
   return (
-    <Link to={`pomodoro/${task.id}`}
+    <article
       className={`w-full flex flex-col items-start gap-2 p-6 border-2 cursor-auto ${
         task.completed
-          ? "border-green-600 opacity-75"
+          ? "border-green-500 opacity-75"
           : "border-gray-600 hover:border-blue-400"
       } rounded-md transition-colors`}
     >
@@ -47,19 +47,17 @@ export default function TaskCard({
         <button
           className={`flex items-center justify-center h-5 w-5 rounded-sm border-2 border-gray-600 hover:cursor-pointer mt-1 ${
             task.completed
-              ? "bg-green-600 border-green-600"
+              ? "bg-green-500 border-green-500"
               : "hover:border-green-500"
           }`}
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
+          onClick={() => {
             toggleComplete(task.id);
           }}
         >
           {task.completed && <Check size={20} />}
         </button>
 
-        <div className="flex flex-col gap-4 flex-1">
+        <Link to={`pomodoro/${task.id}`} className="flex flex-col gap-4 flex-1">
           {/* Título e Descrição */}
           <div className="flex flex-col gap-1">
             <h3
@@ -94,15 +92,13 @@ export default function TaskCard({
               <p className="text-gray-400 text-xs">{progress}% concluído</p>
             </div>
           </div>
-        </div>
+        </Link>
 
         <div className="flex gap-1">
           {/* Botão de Editar */}
           <button
             className="text-blue-400 hover:bg-gray-700 p-2 rounded-sm hover:cursor-pointer"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
+            onClick={() => {
               setIsEditing(true);
             }}
           >
@@ -112,9 +108,7 @@ export default function TaskCard({
           {/* Botão de Remover */}
           <button
             className="text-red-400 hover:bg-gray-700 p-2 rounded-sm hover:cursor-pointer"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
+            onClick={() => {
               removeTask(task.id);
             }}
           >
@@ -122,6 +116,6 @@ export default function TaskCard({
           </button>
         </div>
       </div>
-    </Link>
+    </article>
   );
 }

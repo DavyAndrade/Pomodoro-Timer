@@ -78,31 +78,39 @@ Dashboard com métricas de produtividade do usuário:
 src/
 ├── components/
 │   ├── homepage/
-│   │   └── Tasks/          # Componentes de gerenciamento de tarefas
-│   │       ├── TaskCard.tsx    # Card individual de tarefa
-│   │       ├── TaskForm.tsx    # Formulário de criação/edição
-│   │       └── Tasks.tsx       # Container e lógica principal
+│   │   └── Tasks/              # Componentes de gerenciamento de tarefas
+│   │       ├── TaskCard.tsx        # Card individual de tarefa
+│   │       ├── TaskForm.tsx        # Formulário de criação
+│   │       ├── TaskEditForm.tsx    # Formulário de edição
+│   │       └── Tasks.tsx           # Container (apenas UI)
 │   └── layout/
-│       ├── Navbar.tsx      # Barra de navegação
-│       └── Footer.tsx      # Rodapé
+│       ├── Navbar.tsx          # Barra de navegação
+│       └── Footer.tsx          # Rodapé
 ├── pages/
-│   ├── Home.tsx           # Página inicial (lista de tarefas)
-│   ├── Settings.tsx       # Página de configurações
-│   └── Statistics.tsx     # Página de estatísticas
+│   ├── Home.tsx               # Página inicial (lista de tarefas)
+│   ├── Pomodoro.tsx          # Página do timer Pomodoro
+│   ├── Settings.tsx          # Página de configurações
+│   └── Statistics.tsx        # Página de estatísticas
+├── hooks/
+│   ├── useLocalStorage.ts    # Hook genérico para localStorage
+│   └── useTasks.ts          # Hook para gerenciar tarefas
 ├── models/
-│   └── Task.ts           # Interface/tipo da Task
-└── App.tsx               # Componente raiz com rotas
+│   └── Task.ts              # Interface/tipo da Task
+└── App.tsx                  # Componente raiz com rotas
 ```
 
 ## 🔄 Fluxo de Uso
 
-1. **Criar Tarefa**: Usuário adiciona uma nova tarefa com título e número estimado de pomodoros
-2. **Selecionar Tarefa**: Clica no card da tarefa para iniciar o pomodoro
-3. **Executar Pomodoro**: Inicia o timer e trabalha focado na tarefa
-4. **Intervalo**: Após cada pomodoro, sistema sugere pausa curta ou longa
-5. **Progresso**: Ao completar pomodoros, a barra de progresso da tarefa é atualizada
-6. **Conclusão**: Marca tarefa como concluída quando finalizada
-7. **Estatísticas**: Visualiza métricas de produtividade acumuladas
+1. **Criar Tarefa**: Usuário clica no botão "Adicionar Tarefa" e preenche o formulário
+2. **Visualizar Tarefas**: Lista exibe todas as tarefas com barra de progresso
+3. **Editar Tarefa**: Clica no botão de editar para modificar informações
+4. **Marcar Concluída**: Switch no card alterna status de conclusão
+5. **Selecionar Tarefa**: Clica no card da tarefa para acessar o Pomodoro
+6. **Executar Pomodoro**: Na página dedicada, inicia o timer de 25 minutos
+7. **Intervalo**: Após cada pomodoro, faz pausa curta (5min) ou longa (15min)
+8. **Progresso Automático**: Ao completar pomodoro, contador é atualizado
+9. **Conclusão**: Ao finalizar todos os pomodoros, marca tarefa como concluída
+10. **Remover Tarefa**: Botão de deletar remove a tarefa da lista
 
 ## 💾 Persistência de Dados
 
@@ -148,14 +156,52 @@ interface Task {
 
 ## 🎯 Próximos Passos
 
-- [ ] Implementar página do Pomodoro com timer funcional
+- [ ] Implementar timer funcional na página do Pomodoro
+- [ ] Adicionar controles: Iniciar, Pausar, Resetar, Skip
+- [ ] Atualizar `pomodorosCompleted` automaticamente ao completar timer
+- [ ] Diferenciar visualmente: pomodoro, intervalo curto, intervalo longo
 - [ ] Adicionar notificações sonoras ao fim de cada período
+- [ ] Migrar para CSS Modules (começar pelo TaskCard)
 - [ ] Implementar sistema de configurações persistentes
 - [ ] Criar dashboard de estatísticas com gráficos
 - [ ] Adicionar tema claro/escuro
 - [ ] Implementar histórico de sessões de pomodoro
 - [ ] Adicionar categorias/tags para tarefas
 - [ ] Sistema de conquistas/gamificação
+
+## ✅ Concluído
+
+### Sprint 1 - Setup e CRUD ✅
+- [x] Estrutura base do projeto (Vite + React + TypeScript)
+- [x] Sistema de roteamento (React Router)
+- [x] Layout básico (Navbar + Footer)
+- [x] Componentes de Tasks (TaskCard, TaskForm, TaskEditForm, Tasks)
+- [x] CRUD completo de tarefas:
+  - [x] Adicionar tarefas
+  - [x] Editar tarefas (formulário dedicado)
+  - [x] Remover tarefas
+  - [x] Marcar/desmarcar como concluída
+- [x] Persistência automática em localStorage
+- [x] Barra de progresso de pomodoros
+- [x] Porcentagem de conclusão (limitada a 100%)
+- [x] Interface Task em models/
+- [x] README.md e TODO.md com documentação completa
+
+### Sprint 2 - Hooks Customizados ✅
+- [x] Hook customizado `useLocalStorage` (genérico e reutilizável)
+- [x] Hook customizado `useTasks` (gerenciamento centralizado)
+- [x] Refatoração para separar lógica de UI
+- [x] Componentes limpos focados em renderização
+
+### Sprint 3 - Navegação para Pomodoro ✅
+- [x] Página Pomodoro.tsx criada
+- [x] Rota `/pomodoro/:taskId` implementada
+- [x] TaskCard clicável (navegação via Link)
+- [x] Captura de parâmetro taskId via useParams
+- [x] Prevenção de propagação de eventos nos botões
+- [x] Busca da task pelo ID na página Pomodoro
+- [x] Botão de voltar para tela de tarefas
+- [x] Tratamento de task não encontrada
 
 ## 📄 Licença
 

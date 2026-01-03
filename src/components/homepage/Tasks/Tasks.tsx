@@ -6,12 +6,6 @@ import { useTasks } from "../../../hooks/useTasks";
 export default function Tasks() {
   const { tasks, addTask, editTask, toggleComplete, removeTask } = useTasks();
 
-  /* 
-    TODO: 
-    - Editar tarefa (estilização do formulário de edição)
-    - Abrir detalhes da tarefa
-  */
- 
   return (
     <section className="w-full flex flex-col justify-between items-center gap-8">
       {/* Cabeçalho */}
@@ -31,7 +25,15 @@ export default function Tasks() {
         {/* Lista de Tarefas */}
 
         {tasks.length > 0 ? (
-          tasks.map((task) => <TaskCard key={task.id} task={task} removeTask={removeTask} toggleComplete={toggleComplete} editTask={editTask} />)
+          tasks.map((task) => (
+            <TaskCard
+              key={task.id}
+              task={task}
+              removeTask={removeTask}
+              toggleComplete={toggleComplete}
+              editTask={editTask}
+            />
+          ))
         ) : (
           <div>
             <p className="text-gray-500 text-center text-lg">
