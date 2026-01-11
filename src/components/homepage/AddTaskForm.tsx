@@ -57,7 +57,6 @@ export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
 
           <TextArea
             label="Descrição"
-            name="description"
             id="description"
             rows={4}
             placeholder="Ex.: Funções de Terceiro Grau"
@@ -78,7 +77,7 @@ export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
             required
           />
 
-          <div className="grid w-full gap-2 sm:grid-cols-2">
+          <div className="grid w-full gap-4 sm:grid-cols-2">
             <Button
               size="lg"
               variant="primary"
@@ -100,7 +99,8 @@ export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
       ) : (
         <Button
           fullWidth
-          className="flex justify-center items-center px-6 py-8 bg-gray-800/75 text-gray-500 w-full rounded-md border-2 border-dashed border-gray-700 hover:bg-gray-700 hover:border-blue-500 hover:text-white focus:bg-gray-700 focus:text-white"
+          className="px-6 py-8 bg-gray-800/75 text-gray-400 rounded-md border-2 border-dashed border-gray-700 hover:bg-gray-700 hover:border-blue-500 hover:text-white focus:bg-gray-700 focus:text-white"
+          variant="transparent"
           onClick={() => setIsShowForm(true)}
         >
           + Adicionar tarefa

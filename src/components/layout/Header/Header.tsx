@@ -1,6 +1,6 @@
 import { ChartColumnBig, House, Settings, Timer } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Heading } from "../../ui";
+import { Heading, Text } from "../../ui";
 
 export default function Header() {
   const navItems = [
@@ -62,7 +62,9 @@ function NavigationItem({ label, href, icon }: NavigationItemProps) {
       className="flex justify-center items-center gap-1 p-2 rounded-sm bg-gray-700/75 hover:bg-gray-700 hover:cursor-pointer transition-colors text-white"
     >
       {icon}
-      <p className="text-md hidden text-center sm:block">{label}</p>
+      <Text as="span" className="hidden md:block">
+        {label}
+      </Text>
     </Link>
   );
 }

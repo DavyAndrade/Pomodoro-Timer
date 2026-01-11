@@ -5,6 +5,7 @@ type CardProps = {
   className?: string;
   as?: "div" | "article" | "section";
   variant?: "default" | "bordered";
+  tabIndex?: number;
 };
 
 export function Card({
@@ -12,6 +13,7 @@ export function Card({
   className = "",
   as: Component = "article",
   variant = "default",
+  tabIndex,
 }: CardProps) {
   const baseStyles = "rounded-lg transition-colors";
 
@@ -22,7 +24,8 @@ export function Card({
 
   return (
     <Component
-      className={`${baseStyles} ${variantStyles[variant]} ${className}`}
+      className={`${className} ${baseStyles} ${variantStyles[variant]} `}
+      tabIndex={tabIndex}
     >
       {children}
     </Component>

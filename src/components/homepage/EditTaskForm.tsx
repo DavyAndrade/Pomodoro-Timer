@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import type Task from "../../models/Task";
 import { Button, Form, Input, TextArea } from "../ui";
 
@@ -58,14 +58,16 @@ export default function EditTaskForm({
 
   return (
     <Form
-      className="w-full flex flex-col items-start gap-4 p-6 border-2 border-gray-600 hover:border-blue-400 rounded-md transition-colors"
+      className="w-full grid items-start gap-4 p-6 border-2 border-gray-600 hover:border-blue-400 rounded-md transition-colors"
       onSubmit={handleSubmit}
     >
       <Input
         label="Título"
         type="text"
         id="title"
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setTitle(e.target.value)
+        }
         value={title}
         required
         className=""
@@ -75,17 +77,21 @@ export default function EditTaskForm({
         label="Descrição"
         id="description"
         rows={4}
-        onChange={(e) => setDescription(e.target.value)}
+        onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+          setDescription(e.target.value)
+        }
         value={description}
         className=""
       />
 
-      <div className="flex flex-col gap-4 sm:flex-row w-full">
+      <div className="grid gap-4 sm:grid-cols-2 w-full">
         <Input
           label="Pomodoros Completados"
           type="number"
           id="pomodorosCompleted"
-          onChange={(e) => setPomodorosCompleted(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setPomodorosCompleted(e.target.value)
+          }
           value={pomodorosCompleted}
           className="flex-1"
           min={0}
@@ -96,24 +102,28 @@ export default function EditTaskForm({
           label="Meta Estimada"
           type="number"
           id="estimatedPomodoros"
-          onChange={(e) => setEstimatedPomodoros(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setEstimatedPomodoros(e.target.value)
+          }
           value={estimatedPomodoros}
           min={1}
           required
         />
       </div>
 
-      <div className="flex flex-col justify-center items-center gap-4 w-full sm:flex-row">
+      <div className="grid gap-4 w-full sm:grid-cols-2">
         <Button
+          size="lg"
           type="submit"
-          className="bg-green-600 p-4 rounded-md flex-1 w-full hover:cursor-pointer hover:bg-green-700 transition-colors"
+          className="bg-green-600 rounded-md hover:bg-green-700"
         >
           Salvar
         </Button>
         <Button
+          size="lg"
           type="button"
           onClick={onClose}
-          className="bg-gray-500 p-4 rounded-md flex-1 w-full hover:cursor-pointer hover:bg-gray-600 transition-colors"
+          className="bg-gray-500 rounded-md hover:bg-gray-600"
         >
           Cancelar
         </Button>

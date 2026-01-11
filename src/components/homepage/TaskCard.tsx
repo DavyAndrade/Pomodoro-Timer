@@ -82,7 +82,7 @@ export default function TaskCard({
 
           <div className="flex flex-col items-start gap-2">
             {/* Barra de Progresso */}
-            <p className={`flex items-center gap-2 text-sm text-gray-400 `}>
+            <Text as="p" variant="muted" className={`flex items-center gap-2`}>
               <Target
                 className={`text-blue-400 ${
                   task.completed ? "text-green-500" : "text-blue-400"
@@ -90,14 +90,16 @@ export default function TaskCard({
                 size={20}
               />{" "}
               {task.pomodorosCompleted} / {task.estimatedPomodoros} pomodoros
-            </p>
+            </Text>
 
             <div className="w-full flex flex-col items-start gap-1">
               <ProgressBar
                 progress={progress}
                 color={task.completed ? "bg-green-500" : "bg-blue-400"}
               />
-              <p className="text-gray-400 text-xs">{progress}% concluído</p>
+              <Text as="span" variant="muted" className="text-xs">
+                {progress}% concluído
+              </Text>
             </div>
           </div>
         </Link>

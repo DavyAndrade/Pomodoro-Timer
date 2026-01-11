@@ -11,7 +11,7 @@ export default function Layout({ children }: LayoutProps) {
     <Container
       size="md"
       as="div"
-      className="px-6 md:px-0 min-h-screen flex flex-col"
+      className="px-6 lg:px-0 min-h-screen flex flex-col"
     >
       <Header />
 
