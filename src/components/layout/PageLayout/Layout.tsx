@@ -15,9 +15,7 @@ export default function Layout({ children }: LayoutProps) {
     >
       <Header />
 
-      <main className="w-full text-white flex flex-col py-16 items-center flex-1">
-        {children}
-      </main>
+      <main className="w-full text-white flex flex-col gap-4 py-16 flex-1">{children}</main>
 
       <Footer />
     </Container>
