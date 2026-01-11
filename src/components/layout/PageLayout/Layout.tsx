@@ -1,3 +1,4 @@
+import Container from "../../ui/Container";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
@@ -7,16 +8,18 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <>
+    <Container
+      size="md"
+      as="div"
+      className="px-6 md:px-0 min-h-screen flex flex-col"
+    >
       <Header />
 
-      <main className="w-full bg-gray-800 text-white flex flex-col py-16 items-center px-6">
-        <div className="flex flex-col justify-center items-center w-full gap-4 md:max-w-3xl">
-          {children}
-        </div>
+      <main className="w-full text-white flex flex-col py-16 items-center flex-1">
+        {children}
       </main>
 
       <Footer />
-    </>
+    </Container>
   );
 }

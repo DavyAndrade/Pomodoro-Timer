@@ -21,8 +21,8 @@ export default function Header() {
   ];
 
   return (
-    <header className="flex justify-center items-center w-full sticky top-0 left-0 z-50 px-4 bg-gray-800">
-      <div className="flex w-full justify-between items-center gap-2 md:max-w-3xl py-6 border-b-2 border-gray-700">
+    <header className="flex justify-center items-center w-full sticky top-0 left-0 z-50 bg-gray-800">
+      <div className="flex w-full justify-between items-center gap-2 py-6 border-b-2 border-gray-700">
         <Link
           to="/"
           className="text-blue-600 text-xl text-center font-bold flex justify-center items-center gap-1 hover:text-blue-500 transition-colors"

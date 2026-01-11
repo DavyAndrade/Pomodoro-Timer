@@ -60,7 +60,7 @@ export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
             label="Descrição"
             name="description"
             id="description"
-            rows={5}
+            rows={4}
             placeholder="Ex.: Funções de Terceiro Grau"
             onChange={(e) => setDescription(e.target.value)}
           />

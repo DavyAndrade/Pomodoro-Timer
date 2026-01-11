@@ -76,7 +76,7 @@ export default function EditTaskForm({
       <TextArea
         label="Descrição"
         id="description"
-        rows={5}
+        rows={4}
         onChange={(e) => setDescription(e.target.value)}
         value={description}
         className=""
