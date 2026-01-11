@@ -3,9 +3,7 @@ import type Task from "../../models/Task";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import TaskEditForm from "./EditTaskForm";
-import Card from "../ui/Card";
-import Button from "../ui/Button";
-import ProgressBar from "../ui/ProgressBar";
+import { Button, Card, Heading, ProgressBar, Text } from "../ui";
 
 type TaskCardProps = {
   task: Task;
@@ -14,7 +12,7 @@ type TaskCardProps = {
   editTask: (taskId: string, updatedTask: Partial<Task>) => void;
 };
 
-export default function AddTaskCard({
+export default function TaskCard({
   task,
   removeTask,
   toggleComplete,
@@ -68,16 +66,17 @@ export default function AddTaskCard({
         <Link to={`pomodoro/${task.id}`} className="flex flex-col gap-4 flex-1">
           {/* Título e Descrição */}
           <div className="flex flex-col gap-1">
-            <h3
-              className={`font-bold text-lg ${
-                task.completed ? "line-through" : ""
-              }`}
+            <Heading
+              as="h3"
+              className={`${task.completed ? "line-through" : ""}`}
             >
               {task.title}
-            </h3>
+            </Heading>
 
             {task.description && (
-              <p className="text-gray-400 text-sm">{task.description}</p>
+              <Text as="p" variant="muted">
+                {task.description}
+              </Text>
             )}
           </div>
 

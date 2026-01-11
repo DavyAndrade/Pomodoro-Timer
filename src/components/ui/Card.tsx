@@ -7,7 +7,7 @@ type CardProps = {
   variant?: "default" | "bordered";
 };
 
-export default function Card({
+export function Card({
   children,
   className = "",
   as: Component = "article",

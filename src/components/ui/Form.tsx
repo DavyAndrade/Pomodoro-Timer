@@ -5,11 +5,7 @@ interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   className?: string;
 }
 
-export default function Form({
-  children,
-  className = "",
-  ...props
-}: FormProps) {
+export function Form({ children, className = "", ...props }: FormProps) {
   return (
     <form className={className} {...props}>
       {children}

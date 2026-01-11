@@ -1,8 +1,6 @@
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import type Task from "../../models/Task";
-import Form from "../ui/Form";
-import Input, { TextArea } from "../ui/FormFields";
-import Button from "../ui/Button";
+import { Button, Form, Input, TextArea } from "../ui";
 
 type AddTaskFormProps = {
   onAddTask: (task: Task) => void;
@@ -51,7 +49,9 @@ export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
             label="Título"
             placeholder="Ex.: Lição de Matemática"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setTitle(e.target.value)
+            }
             required
           />
 
@@ -61,7 +61,9 @@ export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
             id="description"
             rows={4}
             placeholder="Ex.: Funções de Terceiro Grau"
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+              setDescription(e.target.value)
+            }
           />
 
           <Input
@@ -69,17 +71,19 @@ export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
             type="number"
             id="estimatedPomodoros"
             value={estimatedPomodoros}
-            onChange={(e) => setEstimatedPomodoros(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setEstimatedPomodoros(e.target.value)
+            }
             min={1}
             required
           />
 
-          <div className="flex w-full gap-2">
+          <div className="grid w-full gap-2 sm:grid-cols-2">
             <Button
               size="lg"
               variant="primary"
               type="submit"
-              className="flex justify-center items-center text-white w-full rounded-md"
+              className="flex justify-center items-center text-white rounded-md"
             >
               Adicionar
             </Button>
@@ -87,7 +91,7 @@ export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
               size="lg"
               variant="secondary"
               onClick={() => setIsShowForm(false)}
-              className="flex justify-center items-center text-white w-full rounded-md"
+              className="flex justify-center items-center text-white rounded-md"
             >
               Cancelar
             </Button>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type Task from "../../models/Task";
-import Form from "../ui/Form";
-import { Input, TextArea } from "../ui/FormFields";
+import { Button, Form, Input, TextArea } from "../ui";
 
 type EditTaskFormProps = {
   task: Task;
@@ -105,19 +104,19 @@ export default function EditTaskForm({
       </div>
 
       <div className="flex flex-col justify-center items-center gap-4 w-full sm:flex-row">
-        <button
+        <Button
           type="submit"
           className="bg-green-600 p-4 rounded-md flex-1 w-full hover:cursor-pointer hover:bg-green-700 transition-colors"
         >
           Salvar
-        </button>
-        <button
+        </Button>
+        <Button
           type="button"
           onClick={onClose}
           className="bg-gray-500 p-4 rounded-md flex-1 w-full hover:cursor-pointer hover:bg-gray-600 transition-colors"
         >
           Cancelar
-        </button>
+        </Button>
       </div>
     </Form>
   );

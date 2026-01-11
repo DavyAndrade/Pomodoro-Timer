@@ -7,7 +7,7 @@ type ContainerProps = {
   as?: "div" | "section" | "article" | "main";
 };
 
-export default function Container({
+export function Container({
   children,
   className = "",
   size,

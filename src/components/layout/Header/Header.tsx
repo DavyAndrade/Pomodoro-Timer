@@ -1,6 +1,6 @@
 import { ChartColumnBig, House, Settings, Timer } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Heading } from "../../ui/Typography";
+import { Heading } from "../../ui";
 
 export default function Header() {
   const navItems = [

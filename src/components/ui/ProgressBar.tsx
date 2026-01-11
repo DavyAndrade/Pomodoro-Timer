@@ -3,7 +3,10 @@ type ProgressBarProps = {
   color?: string;
 };
 
-export default function ProgressBar({ progress, color = "bg-blue-400" }: ProgressBarProps) {
+export function ProgressBar({
+  progress,
+  color = "bg-blue-400",
+}: ProgressBarProps) {
   return (
     <div className="w-full h-2 bg-gray-700 rounded-md overflow-hidden">
       <div

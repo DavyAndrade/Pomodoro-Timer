@@ -1,4 +1,4 @@
-import { Heading } from "../../ui/Typography";
+import { Heading } from "../../ui";
 
 export default function Footer() {
   return (

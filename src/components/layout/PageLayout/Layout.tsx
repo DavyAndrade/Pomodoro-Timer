@@ -1,4 +1,4 @@
-import Container from "../../ui/Container";
+import { Container } from "../../ui";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 
