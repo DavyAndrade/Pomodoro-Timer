@@ -2,9 +2,14 @@ import { EllipsisVertical } from "lucide-react";
 import TaskCard from "../components/homepage/TaskCard";
 import { useTasks } from "../hooks/useTasks";
 import TaskForm from "../components/homepage/AddTaskForm";
+import { useEffect } from "react";
 
 export default function Home() {
   const { tasks, addTask, editTask, toggleComplete, removeTask } = useTasks();
+
+  useEffect(() => {
+    document.title = "Pomotimer - Tarefas";
+  });
 
   return (
     <section className="w-full flex flex-col justify-between items-center gap-8">

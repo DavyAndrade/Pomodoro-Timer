@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type Task from "../../models/Task";
 import Form from "../ui/Form";
+import Input from "../ui/Input";
+import TextArea from "../ui/TextArea";
 
 type EditTaskFormProps = {
   task: Task;
@@ -61,54 +63,46 @@ export default function EditTaskForm({
       className="w-full flex flex-col items-start gap-4 p-6 border-2 border-gray-600 hover:border-blue-400 rounded-md transition-colors"
       onSubmit={handleSubmit}
     >
-      <div className="flex flex-col gap-2 w-full">
-        <label htmlFor="title">Título</label>
-        <input
-          type="text"
-          id="title"
-          onChange={(e) => setTitle(e.target.value)}
-          value={title}
-          className="border-2 border-gray-600 rounded-md p-2"
-          required
-        />
-      </div>
+      <Input
+        label="Título"
+        type="text"
+        id="title"
+        onChange={(e) => setTitle(e.target.value)}
+        value={title}
+        required
+        className=""
+      />
 
-      <div className="flex flex-col gap-2 w-full">
-        <label htmlFor="description">Descrição</label>
-        <textarea
-          id="description"
-          onChange={(e) => setDescription(e.target.value)}
-          value={description}
-          className="border-2 border-gray-600 rounded-md p-2"
-        />
-      </div>
+      <TextArea
+        label="Descrição"
+        id="description"
+        rows={5}
+        onChange={(e) => setDescription(e.target.value)}
+        value={description}
+        className=""
+      />
 
       <div className="flex flex-col gap-4 sm:flex-row w-full">
-        <div className="flex flex-col gap-2 w-full">
-          <label htmlFor="pomodorosCompleted">Pomodoros Completados</label>
-          <input
-            type="number"
-            id="pomodorosCompleted"
-            onChange={(e) => setPomodorosCompleted(e.target.value)}
-            value={pomodorosCompleted}
-            className="border-2 border-gray-600 rounded-md p-2 flex-1"
-            min={0}
-            required
-          />
-        </div>
+        <Input
+          label="Pomodoros Completados"
+          type="number"
+          id="pomodorosCompleted"
+          onChange={(e) => setPomodorosCompleted(e.target.value)}
+          value={pomodorosCompleted}
+          className="flex-1"
+          min={0}
+          required
+        />
 
-        <div className="flex flex-col gap-2 w-full">
-          <label htmlFor="estimatedPomodoros">Meta Estimada</label>
-          <input
-            type="number"
-            id="estimatedPomodoros"
-            onChange={(e) => setEstimatedPomodoros(e.target.value)}
-            value={estimatedPomodoros}
-            className="border-2 border-gray-600 rounded-md p-2 flex-1"
-            min={1}
-            required
-          />
-        </div>
+        <Input
+          label="Meta Estimada"
+          type="number"
+          id="estimatedPomodoros"
+          onChange={(e) => setEstimatedPomodoros(e.target.value)}
+          value={estimatedPomodoros}
+          min={1}
+          required
+        />
       </div>
 
       <div className="flex flex-col justify-center items-center gap-4 w-full sm:flex-row">

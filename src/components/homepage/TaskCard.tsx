@@ -1,9 +1,10 @@
-import { Check, Pencil, Target, Trash2 } from "lucide-react";
+import { Check, Pencil, Target, Trash2, X } from "lucide-react";
 import type Task from "../../models/Task";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import TaskEditForm from "./EditTaskForm";
 import Card from "../ui/Card";
+import Button from "../ui/Button";
 
 type TaskCardProps = {
   task: Task;
@@ -43,19 +44,21 @@ export default function AddTaskCard({
       }`}
     >
       <div className="flex items-start gap-3 w-full">
-        {/* Botão de Switch de Concluído */}
-        <button
-          className={`flex items-center justify-center h-5 w-5 rounded-sm border-2 border-gray-600 hover:cursor-pointer mt-1 ${
+        {/* Checkbox de Conclusão */}
+        <Button
+          variant="transparent"
+          size="icon"
+          className={`flex items-center justify-center border-2 border-gray-600 mt-1 p-1 ${
             task.completed
-              ? "bg-green-500 border-green-500"
+              ? "bg-green-500 border-green-500 text-white"
               : "hover:border-green-500"
           }`}
           onClick={() => {
             toggleComplete(task.id);
           }}
         >
-          {task.completed && <Check size={20} />}
-        </button>
+          {task.completed ? <Check size={12} /> : <X size={12} className="bg-clip-text text-transparent" />}
+        </Button>
 
         <Link to={`pomodoro/${task.id}`} className="flex flex-col gap-4 flex-1">
           {/* Título e Descrição */}
@@ -96,24 +99,28 @@ export default function AddTaskCard({
 
         <div className="flex gap-1">
           {/* Botão de Editar */}
-          <button
-            className="text-blue-400 hover:bg-gray-700 p-2 rounded-sm hover:cursor-pointer"
+          <Button
+            variant="transparent"
+            size="icon"
+            className="text-blue-400 hover:bg-gray-700 p-2"
             onClick={() => {
               setIsEditing(true);
             }}
           >
             <Pencil size={20} />
-          </button>
+          </Button>
 
           {/* Botão de Remover */}
-          <button
-            className="text-red-400 hover:bg-gray-700 p-2 rounded-sm hover:cursor-pointer"
+          <Button
+            variant="transparent"
+            size="icon"
+            className="text-red-400 hover:bg-gray-700 p-2"
             onClick={() => {
               removeTask(task.id);
             }}
           >
             <Trash2 size={20} />
-          </button>
+          </Button>
         </div>
       </div>
     </Card>

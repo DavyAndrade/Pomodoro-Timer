@@ -3,34 +3,42 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "transparent";
   fullWidth?: boolean;
-  className?: string;
+  size?: "sm" | "md" | "lg" | "icon";
   children?: ReactNode;
+  className?: string;
 }
 
 const Button = ({
   variant = "primary",
   fullWidth = false,
-  className = "",
+  size = "md",
   children,
+  className = "",
   ...props
 }: ButtonProps) => {
   const baseStyles =
-    "rounded-md hover:cursor-pointer transition-colors p-2 font-bold";
+    "rounded-sm hover:cursor-pointer transition-colors font-medium";
 
   const variantStyles = {
     primary: "bg-blue-500 text-white hover:bg-blue-600",
     secondary: "bg-gray-500 text-white hover:bg-gray-600",
-    transparent: "bg-transparent hover:bg-gray-700",
+    transparent: "",
   };
 
-  if (fullWidth) {
-    className = `w-full ${variantStyles[variant]} ${className}`;
-  } else {
-    className = `${variantStyles[variant]} ${className}`;
-  }
+  const sizeStyles = {
+    sm: "px-3 py-1 text-sm",
+    md: "px-4 py-2",
+    lg: "px-6 py-3",
+    icon: "",
+  };
 
   return (
-    <button {...props} className={`${baseStyles} ${className}`}>
+    <button
+      {...props}
+      className={`${className} ${baseStyles} ${variantStyles[variant]} ${
+        sizeStyles[size]
+      } ${fullWidth ? "w-full" : ""}`}
+    >
       {children}
     </button>
   );

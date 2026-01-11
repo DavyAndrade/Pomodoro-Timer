@@ -9,7 +9,7 @@ type CardProps = {
 
 export default function Card({
   children,
-  className,
+  className = "",
   as: Component = "article",
   variant = "default",
 }: CardProps) {
@@ -22,7 +22,7 @@ export default function Card({
 
   return (
     <Component
-      className={`${baseStyles} ${variantStyles[variant]} ${className ?? ""}`}
+      className={`${baseStyles} ${variantStyles[variant]} ${className}`}
     >
       {children}
     </Component>

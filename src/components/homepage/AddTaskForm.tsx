@@ -3,6 +3,7 @@ import type Task from "../../models/Task";
 import Form from "../ui/Form";
 import Input from "../ui/Input";
 import TextArea from "../ui/TextArea";
+import Button from "../ui/Button";
 
 type AddTaskFormProps = {
   onAddTask: (task: Task) => void;
@@ -74,27 +75,32 @@ export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
           />
 
           <div className="flex w-full gap-2">
-            <button
+            <Button
+              size="lg"
+              variant="primary"
               type="submit"
-              className="flex justify-center items-center px-6 py-2 bg-blue-500 text-white w-full rounded-md hover:bg-blue-600 hover:cursor-pointer transition-colors"
+              className="flex justify-center items-center text-white w-full rounded-md"
             >
               Adicionar
-            </button>
-            <button
+            </Button>
+            <Button
+              size="lg"
+              variant="secondary"
               onClick={() => setIsShowForm(false)}
-              className="flex justify-center items-center px-6 py-2 bg-gray-500 text-white w-full rounded-md hover:bg-gray-600 hover:cursor-pointer transition-colors"
+              className="flex justify-center items-center text-white w-full rounded-md"
             >
               Cancelar
-            </button>
+            </Button>
           </div>
         </Form>
       ) : (
-        <button
-          className="flex justify-center items-center px-6 py-8 bg-gray-800/75 text-gray-500 w-full rounded-md border-2 border-dashed border-gray-700 hover:bg-gray-700 hover:border-blue-500 hover:text-white hover:cursor-pointer focus:bg-gray-700 focus:text-white transition-colors"
+        <Button
+          fullWidth
+          className="flex justify-center items-center px-6 py-8 bg-gray-800/75 text-gray-500 w-full rounded-md border-2 border-dashed border-gray-700 hover:bg-gray-700 hover:border-blue-500 hover:text-white focus:bg-gray-700 focus:text-white"
           onClick={() => setIsShowForm(true)}
         >
           + Adicionar tarefa
-        </button>
+        </Button>
       )}
     </div>
   );
