@@ -1,14 +1,18 @@
-import React from 'react'
+import { type ReactNode } from "react";
 
-type FormProps = {
-    children?: React.ReactNode;
-    onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
+interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
+  children?: ReactNode;
+  className?: string;
 }
 
-export default function Form({ children, onSubmit }: FormProps) {
+export default function Form({
+  children,
+  className = "",
+  ...props
+}: FormProps) {
   return (
-    <form onSubmit={onSubmit}>
+    <form className={className} {...props}>
       {children}
     </form>
-  )
+  );
 }
