@@ -1,8 +1,7 @@
 import { useState } from "react";
 import type Task from "../../models/Task";
 import Form from "../ui/Form";
-import Input from "../ui/Input";
-import TextArea from "../ui/TextArea";
+import Input, { TextArea } from "../ui/FormFields";
 import Button from "../ui/Button";
 
 type AddTaskFormProps = {
