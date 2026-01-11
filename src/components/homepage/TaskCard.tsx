@@ -2,7 +2,8 @@ import { Check, Pencil, Target, Trash2 } from "lucide-react";
 import type Task from "../../models/Task";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import TaskEditForm from "./TaskEditForm";
+import TaskEditForm from "./EditTaskForm";
+import Card from "../ui/Card";
 
 type TaskCardProps = {
   task: Task;
@@ -11,7 +12,7 @@ type TaskCardProps = {
   editTask: (taskId: string, updatedTask: Partial<Task>) => void;
 };
 
-export default function TaskCard({
+export default function AddTaskCard({
   task,
   removeTask,
   toggleComplete,
@@ -35,12 +36,11 @@ export default function TaskCard({
   }
 
   return (
-    <article
-      className={`w-full flex flex-col items-start gap-2 p-6 border-2 cursor-auto ${
-        task.completed
-          ? "border-green-500 opacity-75"
-          : "border-gray-600 hover:border-blue-400"
-      } rounded-md transition-colors`}
+    <Card
+      variant="bordered"
+      className={`w-full flex flex-col items-start gap-2 ${
+        task.completed ? "border-green-500 opacity-75" : "hover:border-blue-400"
+      }`}
     >
       <div className="flex items-start gap-3 w-full">
         {/* Botão de Switch de Concluído */}
@@ -116,6 +116,6 @@ export default function TaskCard({
           </button>
         </div>
       </div>
-    </article>
+    </Card>
   );
 }

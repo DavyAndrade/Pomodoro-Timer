@@ -1,11 +1,14 @@
 import { useState } from "react";
-import type Task from "../../../models/Task";
+import type Task from "../../models/Task";
+import Form from "../ui/Form";
+import Input from "../ui/Input";
+import TextArea from "../ui/TextArea";
 
-type TaskFormProps = {
+type AddTaskFormProps = {
   onAddTask: (task: Task) => void;
 };
 
-export default function TaskForm({ onAddTask }: TaskFormProps) {
+export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
   const [isShowForm, setIsShowForm] = useState(false);
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -39,45 +42,36 @@ export default function TaskForm({ onAddTask }: TaskFormProps) {
   return (
     <div className="w-full flex flex-col gap-4">
       {isShowForm ? (
-        <form
+        <Form
           onSubmit={handleSubmit}
           className="w-full flex flex-col gap-4 p-6 border-2 border-blue-500 rounded-md"
         >
-          <div className="flex flex-col gap-2">
-            <label htmlFor="title">Título</label>
-            <input
-              type="text"
-              id="title"
-              placeholder="Ex.: Lição de Matemática"
-              className="border-2 border-gray-600 rounded-md p-2"
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-          </div>
+          <Input
+            id="title"
+            label="Título"
+            placeholder="Ex.: Lição de Matemática"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="description">Descrição</label>
-            <textarea
-              name="description"
-              id="description"
-              rows={5}
-              placeholder="Ex.: Funções de Terceiro Grau"
-              className="border-2 border-gray-600 rounded-md p-2"
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-          </div>
+          <TextArea
+            label="Descrição"
+            name="description"
+            id="description"
+            rows={5}
+            placeholder="Ex.: Funções de Terceiro Grau"
+            onChange={(e) => setDescription(e.target.value)}
+          />
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="estimatedPomodoros">Pomodoros</label>
-            <input
-              type="number"
-              id="estimatedPomodoros"
-              value={estimatedPomodoros}
-              className="border-2 border-gray-600 rounded-md p-2"
-              onChange={(e) => setEstimatedPomodoros(e.target.value)}
-              min={1}
-            />
-          </div>
+          <Input
+            label="Pomodoros"
+            type="number"
+            id="estimatedPomodoros"
+            value={estimatedPomodoros}
+            onChange={(e) => setEstimatedPomodoros(e.target.value)}
+            min={1}
+          />
 
           <div className="flex w-full gap-2">
             <button
@@ -93,7 +87,7 @@ export default function TaskForm({ onAddTask }: TaskFormProps) {
               Cancelar
             </button>
           </div>
-        </form>
+        </Form>
       ) : (
         <button
           className="flex justify-center items-center px-6 py-8 bg-gray-800/75 text-gray-500 w-full rounded-md border-2 border-dashed border-gray-700 hover:bg-gray-700 hover:border-blue-500 hover:text-white hover:cursor-pointer focus:bg-gray-700 focus:text-white transition-colors"

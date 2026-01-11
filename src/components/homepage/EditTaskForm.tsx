@@ -1,17 +1,18 @@
 import { useState } from "react";
-import type Task from "../../../models/Task";
+import type Task from "../../models/Task";
+import Form from "../ui/Form";
 
-type TaskEditFormProps = {
+type EditTaskFormProps = {
   task: Task;
   onClose: () => void;
   editTask: (taskId: string, updatedTask: Partial<Task>) => void;
 };
 
-export default function TaskEditForm({
+export default function EditTaskForm({
   task,
   onClose,
   editTask,
-}: TaskEditFormProps) {
+}: EditTaskFormProps) {
   const [title, setTitle] = useState<string>(task.title);
   const [description, setDescription] = useState<string>(
     task.description || ""
@@ -56,7 +57,7 @@ export default function TaskEditForm({
   };
 
   return (
-    <form
+    <Form
       className="w-full flex flex-col items-start gap-4 p-6 border-2 border-gray-600 hover:border-blue-400 rounded-md transition-colors"
       onSubmit={handleSubmit}
     >
@@ -125,6 +126,6 @@ export default function TaskEditForm({
           Cancelar
         </button>
       </div>
-    </form>
+    </Form>
   );
 }
