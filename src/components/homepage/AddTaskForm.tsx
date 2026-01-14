@@ -100,7 +100,7 @@ export default function AddTaskForm({ onAddTask }: AddTaskFormProps) {
         <Button
           fullWidth
           className="px-6 py-8 bg-gray-800/75 text-gray-400 rounded-md border-2 border-dashed border-gray-700 hover:bg-gray-700 hover:border-blue-500 hover:text-white focus:bg-gray-700 focus:text-white"
-          variant="transparent"
+          variant="personalized"
           onClick={() => setIsShowForm(true)}
         >
           + Adicionar tarefa

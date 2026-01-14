@@ -45,8 +45,8 @@ export default function TaskCard({
       <div className="flex items-start gap-3 w-full">
         {/* Checkbox de Conclusão */}
         <Button
-          variant="transparent"
-          size="icon"
+          variant="personalized"
+          size="personalized"
           className={`flex items-center justify-center border-2 border-gray-600 mt-1 p-1 ${
             task.completed
               ? "bg-green-500 border-green-500 text-white"
@@ -107,9 +107,10 @@ export default function TaskCard({
         <div className="flex gap-1">
           {/* Botão de Editar */}
           <Button
-            variant="transparent"
-            size="icon"
+            variant="personalized"
+            size="personalized"
             className="text-blue-400 hover:bg-gray-700 p-2"
+            rounded="sm"
             onClick={() => {
               setIsEditing(true);
             }}
@@ -119,12 +120,13 @@ export default function TaskCard({
 
           {/* Botão de Remover */}
           <Button
-            variant="transparent"
-            size="icon"
+            variant="personalized"
+            size="personalized"
             className="text-red-400 hover:bg-gray-700 p-2"
             onClick={() => {
               removeTask(task.id);
             }}
+            rounded="sm"
           >
             <Trash2 size={20} />
           </Button>
