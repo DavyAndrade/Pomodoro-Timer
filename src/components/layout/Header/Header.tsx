@@ -8,17 +8,17 @@ export default function Header() {
     {
       label: "Início",
       href: "/",
-      icon: <House size={20} />,
+      icon: <House size={16} />,
     },
     {
       label: "Estatísticas",
       href: "/statistics",
-      icon: <ChartColumnBig size={20} />,
+      icon: <ChartColumnBig size={16} />,
     },
     {
       label: "Configurações",
       href: "/settings",
-      icon: <Settings size={20} />,
+      icon: <Settings size={16} />,
     },
   ];
 
